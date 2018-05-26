@@ -8,7 +8,7 @@ class Book(models.Model):
     description = models.CharField(max_length=500)
     category = models.CharField(max_length=50)
     author = models.CharField(max_length=100)
-    date_created = models.DateTimeField()
+    date_created = models.DateTimeField(auto_now=True)
     front_cover = models.ImageField()
 
     def __str__(self):

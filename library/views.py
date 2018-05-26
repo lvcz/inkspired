@@ -1,22 +1,22 @@
-# from django.shortcuts import render, redirect
-# from .models import Book
-# # from .forms import ProductForm
-#
-#
-# def list_products(request):
-#     # products = Product.objects.all()
-#     return render(request, 'products.html', {'products': products})
-#
-#
-# def create_product(request):
-#     # form = ProductForm(request.POST or None)
-#
-#     # if form.is_valid():
-#     #     form.save()
-#     #     return redirect('list_products')
-#
-#     # return render(request, 'products-form.html', {'form': form})
-#
+from django.shortcuts import render, redirect
+from .models import Book
+from .forms import BookForm
+
+
+def home_page(request):
+    books = Book.objects.all()
+    return render(request, 'home.html', {'books': books})
+
+
+def create_book(request):
+    form = BookForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('home_page')
+
+    return render(request, 'book-form.html', {'form': form})
+
 #
 # def update_product(request, id):
 #     # product = Product.objects.get(id=id)
