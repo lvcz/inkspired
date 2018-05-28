@@ -6,7 +6,7 @@ class BookForm(forms.ModelForm):
     description = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     category= forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     author= forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    front_cover = forms.FileInput(attrs={'class':'form-control'})
+    front_cover = forms.ImageField(required=False, label_suffix='front cover')
 
 
     class Meta:
