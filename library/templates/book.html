@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="col-md-12">
+        <h1 class="text-center"> {{ book.title }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center"> Author: {{ book.author }}</div>
+        <div class="col-md-4 text-center"> Category: {{ book.category }}</div>
+        <div class="col-md-4 text-center"> Date created: {{ book.date_created }}</div>
+    </div>
+    <div class="col-md-12 text-center">
+        {{ book.description }}
+    </div>
+
+    {% for chapter in chapters %}
+        <div class="jumbotron">
+            <a class="btn btn-primary" href="{% url 'edit_chapter' chapter.id %}"> Edit Chapter</a>
+            <h3 class="text-center"> {{ chapter.title }}</h3>
+            <br/>
+            <div class="col-md-12">{{ chapter.content }}</div>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <a class="btn btn-primary" href="{% url 'create_chapter' book.id %}"> New Chapter</a>
+
+    </div>
+</div>
+{% endblock %}

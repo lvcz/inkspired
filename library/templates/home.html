@@ -10,8 +10,9 @@
                         <th>Title</th>
                         <th>Category</th>
                         <th>Author</th>
-                        <th>New Chapter</th>
+                        <th>Details</th>
                         <th>Edit</th>
+                        <th>Download as PDF</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,8 +21,9 @@
                         <td> {{ book.title }}</td>
                         <td> {{ book.category }}</td>
                         <td> {{ book.author }}</td>
-                        <td> <a class="btn-sm btn-info"><span class="glyphicon glyphicon-list"></span> </a></td>
-                        <td> <a class="btn-sm btn-info"><span class="glyphicon glyphicon-edit"></span> </a></td>
+                        <td> <a class="btn-sm btn-info" href="{% url 'book_detail' book.id %}"> <span class="glyphicon glyphicon-list-alt"></span></a></td>
+                        <td> <a class="btn-sm btn-info" href="{% url 'update_book' book.id %}"><span class="glyphicon glyphicon-edit"></span> </a></td>
+                        <td> <a class="btn-sm btn-info" href="{% url 'update_book' book.id %}"><span class="glyphicon glyphicon-cloud-download"></span> </a></td>
 
                     </tr>
 

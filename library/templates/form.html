@@ -10,7 +10,7 @@
                 {% for field in form %}
 
                     <div class="form-group">
-                        <label for="{{ field.id_for_label }}" class="label"> {{ field.html_name }} </label>
+                        <label for="{{ field.id_for_label }}" class="control-label"> {{ field.html_name }} </label>
                         {{ field }}
                     </div>
                     {% if field.help_text %}
@@ -21,8 +21,14 @@
 
                     {% endfor %}
                 {% endfor %}
+
+
                 <button class="btn btn-primary" type="submit">Submit</button>
+
             </form>
+                {% if book  %}
+                    <a class="btn-primary btn-danger" href="{% url 'delete_book' book.id %}"> Delete book</a>
+                {% endif %}
         </div>
     </div>
 {% endblock body %}
