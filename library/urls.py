@@ -9,4 +9,5 @@ urlpatterns = [
     path('book/<int:id>/create_chapter/', create_chapter, name='create_chapter'),
     path('chapter/<int:id>/edit/', edit_chapter, name='edit_chapter'),
     path('chapter/<int:id>/delete/', delete_chapter, name='delete_chapter'),
+    path('book/<int:id>/download/', download_pdf, name='download_pdf'),
 ]

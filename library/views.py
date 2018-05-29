@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Book, Chapter
 from .forms import BookForm, ChapterForm
 
@@ -73,3 +74,32 @@ def delete_chapter(request, id):
     if request.method == 'POST':
         chapter.delete(keep_parents=True)
         return redirect('home_page')
+
+
+def download_pdf(request, id):
+    import os
+    from reportlab.pdfgen import canvas, pdfimages
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.units import cm
+    # from  reportlab.lib.
+    book = Book.objects.get(id=id)
+    try:
+        chapters = Chapter.objects.all().filter(book=book)
+    except Exception as ex:
+        chapters = []
+    path = os.path.join(os.getcwd(), book.title + '.pdf')
+    pdf = canvas.Canvas(book.title, A4)
+    pdf.drawImage(book.front_cover.file, 0, 0, A4[0]/2, A4[1]/2)
+    pdf.showPage()
+    pdf.drawString(A4[0]/2, 2*cm, book.title)
+    pdf.drawString(A4[0]/2, 6*cm, book.author)
+    page_number = 1
+    pdf.addPageLabel(page_number)
+    pdf.showPage()
+    for chapter in chapters:
+        pdf.drawString(cm * 2, cm * 1, chapter)
+    if os.path.exists(path):
+        with open(path, 'r') as f:
+            response = HttpResponse(f.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(path)
+            return response

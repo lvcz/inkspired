@@ -23,7 +23,7 @@
                         <td> {{ book.author }}</td>
                         <td> <a class="btn-sm btn-info" href="{% url 'book_detail' book.id %}"> <span class="glyphicon glyphicon-list-alt"></span></a></td>
                         <td> <a class="btn-sm btn-info" href="{% url 'update_book' book.id %}"><span class="glyphicon glyphicon-edit"></span> </a></td>
-                        <td> <a class="btn-sm btn-info" href="{% url 'update_book' book.id %}"><span class="glyphicon glyphicon-cloud-download"></span> </a></td>
+                        <td> <a class="btn-sm btn-info" href="{% url 'download_pdf' book.id %}"><span class="glyphicon glyphicon-cloud-download"></span> </a></td>
 
                     </tr>
 
